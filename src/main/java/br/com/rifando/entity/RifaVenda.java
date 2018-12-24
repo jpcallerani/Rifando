@@ -19,15 +19,15 @@ public class RifaVenda {
 	@Column(name = "status", nullable = false)
 	private String status;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_numero_rifa", nullable = false)
 	private RifaNumero rifaNumero;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario", nullable = false)
 	private Usuario usuario;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_rifa", nullable = false)
 	private Rifa rifa;
 

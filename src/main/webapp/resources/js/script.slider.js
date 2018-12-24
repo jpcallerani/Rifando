@@ -7,7 +7,7 @@
                 prevText:'<i class="fa fa-angle-left"></i>',
                 auto: true,
                 mode: 'fade',
-                pause: 12000,
+                pause: 6000,
                 onSliderLoad:function(currentIndex){
                     $('#bxslider-home4 li').find('.caption').each(function(i){
                         $(this).show().addClass('animated fadeInRight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){

@@ -36,6 +36,12 @@ public class Usuario {
 
 	@Column(name = "estado", nullable = false)
 	private String estado;
+	
+	@Column(name = "cep", nullable = false)
+	private String cep;
+	
+	@Column(name = "email", nullable = false)
+	private String email;
 
 	/**
 	 * 
@@ -43,20 +49,8 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	/**
-	 * 
-	 * @param id
-	 * @param cpf
-	 * @param nome
-	 * @param telefone
-	 * @param rua
-	 * @param numero
-	 * @param bairro
-	 * @param cidade
-	 * @param estado
-	 */
 	public Usuario(Integer id, String cpf, String nome, String telefone, String rua, String numero, String bairro,
-			String cidade, String estado) {
+			String cidade, String estado, String cep, String email) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -67,6 +61,8 @@ public class Usuario {
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;
+		this.cep = cep;
+		this.email = email;
 	}
 
 	/**
@@ -195,14 +191,42 @@ public class Usuario {
 		this.estado = estado;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @return the cep
+	 */
+	public String getCep() {
+		return cep;
+	}
+
+	/**
+	 * @param cep the cep to set
+	 */
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", telefone=" + telefone + ", rua=" + rua
-				+ ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + "]";
+				+ ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep="
+				+ cep + ", email=" + email + "]";
 	}
 }
+
