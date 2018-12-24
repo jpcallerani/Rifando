@@ -36,12 +36,15 @@ public class Usuario {
 
 	@Column(name = "estado", nullable = false)
 	private String estado;
-	
+
 	@Column(name = "cep", nullable = false)
 	private String cep;
-	
+
 	@Column(name = "email", nullable = false)
 	private String email;
+
+	@Column(name = "senha", nullable = false)
+	private String senha;
 
 	/**
 	 * 
@@ -50,7 +53,7 @@ public class Usuario {
 	}
 
 	public Usuario(Integer id, String cpf, String nome, String telefone, String rua, String numero, String bairro,
-			String cidade, String estado, String cep, String email) {
+			String cidade, String estado, String cep, String email, String senha) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -63,6 +66,7 @@ public class Usuario {
 		this.estado = estado;
 		this.cep = cep;
 		this.email = email;
+		this.senha = senha;
 	}
 
 	/**
@@ -219,14 +223,29 @@ public class Usuario {
 		this.email = email;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return the senha
+	 */
+	public String getSenha() {
+		return senha;
+	}
+
+	/**
+	 * @param senha the senha to set
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", telefone=" + telefone + ", rua=" + rua
 				+ ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep="
-				+ cep + ", email=" + email + "]";
+				+ cep + ", email=" + email + ", senha=" + senha + "]";
 	}
 }
-

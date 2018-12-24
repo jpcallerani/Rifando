@@ -106,12 +106,12 @@
 		</div>
 	</div>
 	<!-- End mainmenu area -->
-	<div class="slider-area">
+	<div class="slider-area shadow p-3 mb-5 bg-white rounded" >
 		<!-- Slider -->
-		<div class="block-slider block-slider4">
-			<ul class="" id="bxslider-home4">
+		<div class="block-slider block-slider4" >
+			<ul id="bxslider-home4" >
 				<c:forEach var="rifa" items="${rifas}">
-					<li><img class="shadow p-3 mb-5 bg-white rounded"
+					<li><img 
 						src="resources/img/img01.jpg" alt="Slide"
 						style="height: 362px; width: 800px; margin-left: 50px;">
 						<div class="caption-group">

@@ -184,17 +184,14 @@
 					<div class="or-seperator">
 						<i>ou</i>
 					</div>
-					<p class="text-center">Logar com as redes sociais</p>
+					<p class="text-center">Criar uma conta</p>
 					<div class="text-center social-btn">
-						<a href="#" class="btn btn-primary"><i class="fa fa-facebook"></i>&nbsp;
-							Facebook</a> <a href="#" class="btn btn-info"><i
-							class="fa fa-twitter"></i>&nbsp; Twitter</a> <a href="#"
-							class="btn btn-danger"><i class="fa fa-google"></i>&nbsp;
-							Google</a>
+						<a href="#" class="btn btn-danger">&nbsp;
+							Clique aqui para criar uma nova conta</a>
 					</div>
 				</form>
 				<p class="text-center text-muted small">
-					Não possui uma conta? <a href="#">Crie uma aqui!</a>
+					© 2019 Rifando. Todos os diretos reservados. Rifando.
 				</p>
 			</div>
 		</div>

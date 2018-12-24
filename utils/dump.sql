@@ -150,6 +150,7 @@ CREATE TABLE `usuario` (
   `numero` int(11) NOT NULL,
   `cep` varchar(20) NOT NULL,
   `email` varchar(45) NOT NULL,
+  `senha` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -160,7 +161,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'34005806864','Joao Silva','19984271504','nicola fassina','sousas','campinas','são paulo',637,'',''),(2,'39936065824','Bia Messias','19984271504','nicola fassina','sousas','campinas','são paulo',637,'','');
+INSERT INTO `usuario` VALUES (1,'34005806864','Joao Silva','19984271504','nicola fassina','sousas','campinas','são paulo',637,'13106102','jpcallerani@gmail.com','1234'),(2,'39936065824','Bia Messias','19984271504','nicola fassina','sousas','campinas','são paulo',637,'13106102','biahmessias@gmail.com','1234');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -173,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-24  6:57:57
+-- Dump completed on 2018-12-24 18:19:29
