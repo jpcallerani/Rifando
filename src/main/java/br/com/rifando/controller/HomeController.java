@@ -16,6 +16,11 @@ public class HomeController {
 	@Autowired
 	private RifaService rifaService;
 
+	/**
+	 * Método para mostrar a página inicial;
+	 * @param theModal
+	 * @return
+	 */
 	@RequestMapping("/")
 	public String showPage(ModelMap theModal) {
 

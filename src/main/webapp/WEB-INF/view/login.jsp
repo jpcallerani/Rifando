@@ -156,27 +156,24 @@
 	<div class="mainmenu-area">
 		<div class="container">
 			<div class="login-form">
-				<form action="/examples/actions/confirmation.php" method="post">
-					<h2 class="text-center">Sign in</h2>
+				<!-- Método para login do usuário -->
+				<form:form action="${pageContext.request.contextPath}/efetuaLogin"
+					method="POST" modelAttribute="usuario">
+					<h2 class="text-center">Login</h2>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon" style="width: 40px;"><i
-								class="fa fa-user"></i></span> <input type="email" class="form-control"
-								name="username" placeholder="Digite seu e-mail"
-								required="required">
+								class="fa fa-user"></i></span> <form:input type="email" class="form-control" path="email" name="email" placeholder="Digite seu e-mail" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon" style="width: 40px;"><i
-								class="fa fa-lock"></i></span> <input type="password"
-								class="form-control" name="password"
-								placeholder="Digite sua senha" required="required">
+								class="fa fa-lock"></i></span> <form:input type="password" class="form-control" path="senha" name="password" placeholder="Digite sua senha" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary login-btn btn-block">Sign
-							in</button>
+						<button type="submit" class="btn btn-primary login-btn btn-block">Sign	in</button>
 					</div>
 					<div class="clearfix">
 						<a href="#" class="pull-right">Esqueceu sua senha?</a>
@@ -186,13 +183,12 @@
 					</div>
 					<p class="text-center">Criar uma conta</p>
 					<div class="text-center social-btn">
-						<a href="#" class="btn btn-danger">&nbsp;
-							Clique aqui para criar uma nova conta</a>
+						<a href="#" class="btn btn-danger">&nbsp; Clique aqui para
+							criar uma nova conta</a>
 					</div>
-				</form>
-				<p class="text-center text-muted small">
-					© 2019 Rifando. Todos os diretos reservados. Rifando.
-				</p>
+				</form:form>
+				<p class="text-center text-muted small">© 2019 Rifando. Todos os
+					diretos reservados. Rifando.</p>
 			</div>
 		</div>
 	</div>

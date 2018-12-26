@@ -3,10 +3,13 @@ package br.com.rifando.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.rifando.dao.UsuarioDao;
 import br.com.rifando.entity.Usuario;
 
+
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired

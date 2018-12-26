@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.rifando.entity.Usuario;
 
@@ -48,12 +49,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
+	@Transactional
 	public Usuario Login(Usuario usuario) {
 		Session sessao = sessionFactory.getCurrentSession();
 		try {
 			Usuario novoUsuario = (Usuario) sessao
 					.createQuery("select u from Usuario u where u.email = :email and u.senha = :senha", Usuario.class)
-					.setParameter("email", usuario.getEmail()).setParameter("senha", usuario.getSenha()).getSingleResult();
+					.setParameter("email", usuario.getEmail()).setParameter("senha", usuario.getSenha())
+					.getSingleResult();
 			;
 			return novoUsuario;
 		} catch (NoResultException ex) {
