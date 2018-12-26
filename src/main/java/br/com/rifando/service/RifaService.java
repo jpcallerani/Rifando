@@ -2,22 +2,41 @@ package br.com.rifando.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.rifando.entity.Rifa;
 import br.com.rifando.entity.RifaVenda;
+import br.com.rifando.repository.RifaRepository;
+import br.com.rifando.repository.RifaVendaRepository;
 
-public interface RifaService {
-	
-	List<RifaVenda> findByRifaVendaIdRifa(int id);
-	
-	Rifa findById(int id);
-	
-	Rifa findValidRifa();
+@Service
+public class RifaService {
 
-	Rifa findByIdProduto(String idProduto);
+	@Autowired
+	private RifaRepository rifaRepostory;
 
-	void save(Rifa rifa);
+	@Autowired
+	private RifaVendaRepository rifaVendaRepository;
 
-	void deleteById(String id);
+	/**
+	 * Busca todas as rifas cadastradas.
+	 * 
+	 * @return
+	 */
+	@Transactional
+	public List<Rifa> findAll() {
+		return this.rifaRepostory.findAll();
+	}
 
-	List<Rifa> findAllRifas();
+	/**
+	 * 
+	 * @param rifa
+	 * @return
+	 */
+	@Transactional
+	public List<RifaVenda> findByRifa(Rifa rifa) {
+		return this.rifaVendaRepository.findByRifa(rifa);
+	}
 }

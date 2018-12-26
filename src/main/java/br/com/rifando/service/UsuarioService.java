@@ -1,20 +1,19 @@
 package br.com.rifando.service;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.rifando.entity.Usuario;
+import br.com.rifando.repository.UsuarioRepository;
 
-public interface UsuarioService {
+@Service
+public class UsuarioService {
 	
-	Usuario Login(Usuario usuario);
-	
-	Usuario findById(int id);
+@Autowired
+private UsuarioRepository usuarioRepository;
 
-	Usuario findByCPF(String cpf);
+public Usuario login(Usuario usuario) {
+	return this.usuarioRepository.findByEmailAndSenha(usuario.getEmail(), usuario.getSenha());
+}
 
-	void save(Usuario rifa);
-
-	void deleteById(String id);
-
-	List<Usuario> FindAll();
 }

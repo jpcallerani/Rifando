@@ -41,11 +41,19 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<!-- Adicionando JQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -120,6 +128,76 @@
 	z-index: 1;
 }
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		// SUBMIT FORM
+		$("#customerForm").submit(function(event) {
+			// Prevent the form from submitting via the browser.
+
+			event.preventDefault();
+			ajaxPost();
+		});
+
+		function ajaxPost() {
+			// PREPARE FORM DATA
+			var formData = {
+				email : $("#email").val(),
+				senha : $("#senha").val()
+			}
+
+			// DO POST
+			$.ajax({
+				type : "POST",
+				contentType : "application/json",
+				url : "efetuaLogin",
+				data : JSON.stringify(formData),
+				dataType : 'json',
+				success : function(result) {
+					if (result.status == "Done") {
+						window.location.replace("cadastro");
+					} else {
+						function toasterOptions() {
+							toastr.options = {
+								"closeButton" : false,
+								"debug" : false,
+								"newestOnTop" : false,
+								"progressBar" : true,
+								"positionClass" : "toast-top-center",
+								"preventDuplicates" : false,
+								"showDuration" : "300",
+								"hideDuration" : "1000",
+								"timeOut" : "5000",
+								"extendedTimeOut" : "1000",
+								"showEasing" : "swing",
+								"hideEasing" : "linear",
+								"showMethod" : "fadeIn",
+								"hideMethod" : "fadeOut"
+							};
+						};
+
+						toasterOptions();
+						toastr.error("Sua credenciais estão inválidas ou não existem.", "Atenção!");
+					}
+					console.log(result);
+				},
+				error : function(e) {
+					alert("erro");
+					console.log("ERROR: ", e);
+				}
+			});
+
+			// Reset FormData after Posting
+			resetData();
+
+		}
+
+		function resetData() {
+			$("#email").val("");
+			$("#senha").val("");
+		}
+	});
+</script>
 </head>
 <body>
 	<div class="header-area">
@@ -157,23 +235,29 @@
 		<div class="container">
 			<div class="login-form">
 				<!-- Método para login do usuário -->
-				<form:form action="${pageContext.request.contextPath}/efetuaLogin"
-					method="POST" modelAttribute="usuario">
+				<form:form id="customerForm" method="POST" modelAttribute="usuario">
 					<h2 class="text-center">Login</h2>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon" style="width: 40px;"><i
-								class="fa fa-user"></i></span> <form:input type="email" class="form-control" path="email" name="email" placeholder="Digite seu e-mail" required="required"/>
+								class="fa fa-user"></i></span>
+							<form:input id="email" type="email" class="form-control"
+								path="email" name="email" placeholder="Digite seu e-mail"
+								required="required" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon" style="width: 40px;"><i
-								class="fa fa-lock"></i></span> <form:input type="password" class="form-control" path="senha" name="password" placeholder="Digite sua senha" required="required"/>
+								class="fa fa-lock"></i></span>
+							<form:input id="senha" type="password" class="form-control"
+								path="senha" name="password" placeholder="Digite sua senha"
+								required="required" />
 						</div>
 					</div>
+					<div style="color: red">${error}</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary login-btn btn-block">Sign	in</button>
+						<button type="submit" class="btn btn-primary login-btn btn-block">Entrar</button>
 					</div>
 					<div class="clearfix">
 						<a href="#" class="pull-right">Esqueceu sua senha?</a>
@@ -181,10 +265,10 @@
 					<div class="or-seperator">
 						<i>ou</i>
 					</div>
-					<p class="text-center">Criar uma conta</p>
 					<div class="text-center social-btn">
-						<a href="#" class="btn btn-danger">&nbsp; Clique aqui para
-							criar uma nova conta</a>
+						<a href="${pageContext.request.contextPath}/cadastro"
+							class="btn btn-danger">&nbsp; Clique aqui para criar uma nova
+							conta</a>
 					</div>
 				</form:form>
 				<p class="text-center text-muted small">© 2019 Rifando. Todos os

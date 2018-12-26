@@ -18,6 +18,7 @@ public class HomeController {
 
 	/**
 	 * Método para mostrar a página inicial;
+	 * 
 	 * @param theModal
 	 * @return
 	 */
@@ -25,16 +26,16 @@ public class HomeController {
 	public String showPage(ModelMap theModal) {
 
 		// Busca a última rifa cadastrada como válida;
-		List<Rifa> rifas = this.rifaService.findAllRifas();
+		List<Rifa> rifas = this.rifaService.findAll();
 		for (Rifa rifa : rifas) {
-			rifa.setRifaVenda(this.rifaService.findByRifaVendaIdRifa(rifa.getId()));
+			rifa.setRifaVenda(this.rifaService.findByRifa(rifa));
 		}
 
 		// Adiciona a rifa no parâmetro da página;
 		theModal.addAttribute("rifas", rifas);
 
-		return "index"; 
-	} 
+		return "index";
+	}
 
 	@RequestMapping("/rifa")
 	public String showRifa() {

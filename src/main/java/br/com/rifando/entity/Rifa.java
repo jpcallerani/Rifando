@@ -4,13 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Entity;
 
 @Entity
 @Table(name = "rifa")
@@ -57,8 +57,6 @@ public class Rifa {
 		this.finalizada = finalizada;
 	}
 
-	
-	
 	/**
 	 * @return the rifaVenda
 	 */
