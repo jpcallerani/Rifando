@@ -1,0 +1,295 @@
+@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
+
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+/* Starter CSS for Menu */
+#cssmenu {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	width: auto;
+}
+
+#cssmenu ul, #cssmenu li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#cssmenu ul {
+	position: relative;
+	z-index: 597;
+}
+
+#cssmenu ul li {
+	float: left;
+	min-height: 1px;
+	vertical-align: middle;
+}
+
+#cssmenu ul li.hover, #cssmenu ul li:hover {
+	position: relative;
+	z-index: 599;
+	cursor: default;
+}
+
+#cssmenu ul ul {
+	visibility: hidden;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 598;
+	width: 100%;
+}
+
+#cssmenu ul ul li {
+	float: none;
+}
+
+#cssmenu ul ul ul {
+	top: 0;
+	left: 190px;
+	width: 190px;
+}
+
+#cssmenu ul li:hover>ul {
+	visibility: visible;
+}
+
+#cssmenu ul ul {
+	bottom: 0;
+	left: 0;
+}
+
+#cssmenu ul ul {
+	margin-top: 0;
+}
+
+#cssmenu ul ul li {
+	font-weight: normal;
+}
+
+#cssmenu a {
+	display: block;
+	line-height: 1em;
+	text-decoration: none;
+}
+/* Custom CSS Styles */
+#cssmenu {
+	background: #333333;
+	border-bottom: 4px solid #1b9bff;
+	font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
+	font-size: 12px;
+}
+
+#cssmenu>ul {
+	*display: inline-block;
+}
+
+#cssmenu:after, #cssmenu ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#cssmenu ul {
+	text-transform: uppercase;
+}
+
+#cssmenu ul ul {
+	border-top: 4px solid #1b9bff;
+	text-transform: none;
+	min-width: 190px;
+}
+
+#cssmenu ul ul a {
+	background: #1b9bff;
+	color: #ffffff;
+	border: 1px solid #0082e7;
+	border-top: 0 none;
+	line-height: 150%;
+	padding: 16px 20px;
+	font-size: 12px;
+}
+
+#cssmenu ul ul ul {
+	border-top: 0 none;
+}
+
+#cssmenu ul ul li {
+	position: relative;
+}
+
+#cssmenu ul ul li:first-child>a {
+	border-top: 1px solid #0082e7;
+}
+
+#cssmenu ul ul li:hover>a {
+	background: #4eb1ff;
+	color: #ffffff;
+}
+
+#cssmenu ul ul li:last-child>a {
+	-moz-border-radius: 0 0 3px 3px;
+	-webkit-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	-moz-box-shadow: 0 1px 0 #1b9bff;
+	-webkit-box-shadow: 0 1px 0 #1b9bff;
+	box-shadow: 0 1px 0 #1b9bff;
+}
+
+#cssmenu ul ul li:last-child:hover>a {
+	-moz-border-radius: 0 0 0 3px;
+	-webkit-border-radius: 0 0 0 3px;
+	border-radius: 0 0 0 3px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+#cssmenu ul ul li.has-sub>a:after {
+	content: '+';
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	margin-top: -8px;
+}
+
+#cssmenu ul li:hover>a, #cssmenu ul li.active>a {
+	background: #1b9bff;
+	color: #ffffff;
+}
+
+#cssmenu ul li.has-sub>a:after {
+	content: '+';
+	margin-left: 5px;
+}
+
+#cssmenu ul li.last ul {
+	left: auto;
+	right: 0;
+}
+
+#cssmenu ul li.last ul ul {
+	left: auto;
+	right: 99.5%;
+}
+
+#cssmenu a {
+	background: #333333;
+	color: #CBCBCB;
+	padding: 0 20px;
+}
+
+#cssmenu>ul>li>a {
+	line-height: 48px;
+	font-size: 12px;
+}
+
+.navbar {
+	min-height: 60px;
+	border-radius: 0;
+}
+
+.navbar-default {
+	background-color: #333333;
+	border-color: #1c1a1a;
+}
+
+.mojo-logo {
+	max-height: 60px;
+}
+
+#nav-home, #nav-contact, #nav-exit {
+	display: block;
+}
+
+.navbar-nav>li>a {
+	padding-bottom: 20px;
+}
+
+.nav-icon-text {
+	display: block;
+	color: white;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.navbar-nav>li>a:hover .nav-icon-text {
+	display: block;
+	color: #1c1a1a;
+}
+
+.nav>li>a {
+	padding: 10px 0px;
+}
+
+.nav>li {
+	padding-top: 20px;
+	min-height: 99px;
+	min-width: 95px;
+	text-align: center;
+}
+
+.modal-header {
+	background: #3DB5FF;
+}
+
+.heading {
+	margin: 0;
+	padding: .3rem;
+	font-size: 1.15rem;
+	color: #fff;
+	font-family: 'Poppins', 'Oxygen Mono', Tahoma, Arial, sans-serif;
+	font-size: 18px;
+}
+
+.icone-modal {
+	color: #3DB5FF;
+	margin-right: 5px;
+}
+
+.text-modal {
+	font-family: 'Poppins', 'Oxygen Mono', Tahoma, Arial, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+}
+
+.top-buffer {
+	margin-top: 5px;
+}
+
+.form-control-plaintext {
+	display: inline-block !important;
+	border: 0 !important;
+}
+
+.container .dropdown-menu {
+	position: static;
+	float: none;
+}
+
+.popover {
+	max-width: 600px !important;
+}
+
+.btn-circle.btn-lg {
+	width: 30px;
+	height: 30px;
+	padding: 6px 0px;
+	font-size: 12px;
+	line-height: 1.33;
+	border-radius: 25px;
+}
+
+.btn-circle.btn-lg:hover {
+	background-color: #3DB5FF;
+	border-color: #3DB5FF;
+	box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}

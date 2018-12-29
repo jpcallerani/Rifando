@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rifando.</title>
@@ -63,73 +63,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<style type="text/css">
-.login-form {
-	width: 385px;
-	margin: 30px auto;
-}
-
-.login-form form {
-	margin-bottom: 15px;
-	background: #f7f7f7;
-	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-	padding: 30px;
-}
-
-.login-form h2 {
-	margin: 0 0 15px;
-}
-
-.form-control, .login-btn {
-	min-height: 38px;
-	border-radius: 2px;
-}
-
-.input-group-addon .fa {
-	font-size: 20px;
-}
-
-.login-btn {
-	font-size: 15px;
-	font-weight: bold;
-}
-
-.social-btn .btn {
-	border: none;
-	margin: 10px 3px 0;
-	opacity: 1;
-}
-
-.social-btn .btn:hover {
-	opacity: 0.9;
-}
-
-.social-btn .btn-primary {
-	background: #507cc0;
-}
-
-.social-btn .btn-info {
-	background: #64ccf1;
-}
-
-.social-btn .btn-danger {
-	background: #df4930;
-}
-
-.or-seperator {
-	margin-top: 20px;
-	text-align: center;
-	border-top: 1px solid #ccc;
-}
-
-.or-seperator i {
-	padding: 0 10px;
-	background: #f7f7f7;
-	position: relative;
-	top: -11px;
-	z-index: 1;
-}
-</style>
 </head>
 <body>
 	<div class="header-area">
@@ -142,7 +75,7 @@
 			<li><a href='./'><span>Home</span></a></li>
 			<li><a href='${pageContext.request.contextPath}/contato'><span>Contato</span></a></li>
 			<li><a href='${pageContext.request.contextPath}/cadastro'><span>Cadastro</span></a></li>
-			<li class='last active'><a
+			<li class='last'><a
 				href='${pageContext.request.contextPath}/login'><span>Login</span></a></li>
 		</ul>
 	</div>
@@ -150,46 +83,20 @@
 
 	<div class="mainmenu-area">
 		<div class="container">
-			<div id="" class="login-form">
-				<!-- Método para login do usuário -->
-				<form:form id="customerForm" method="POST" modelAttribute="usuario">
-					<h2 class="text-center">Login</h2>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon" style="width: 40px;"><i
-								class="fa fa-user"></i></span>
-							<form:input id="email" type="email" class="form-control"
-								path="email" name="email" placeholder="Digite seu e-mail"
-								required="required" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon" style="width: 40px;"><i
-								class="fa fa-lock"></i></span>
-							<form:input id="senha" type="password" class="form-control"
-								path="senha" name="password" placeholder="Digite sua senha"
-								required="required" />
-						</div>
-					</div>
-					<div style="color: red">${error}</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary login-btn btn-block">Entrar</button>
-					</div>
-					<div class="clearfix">
-						<a href="#" class="pull-right">Esqueceu sua senha?</a>
-					</div>
-					<div class="or-seperator">
-						<i>ou</i>
-					</div>
-					<div class="text-center social-btn">
-						<a href="${pageContext.request.contextPath}/cadastro"
-							class="btn btn-danger">&nbsp; Clique aqui para criar uma nova
-							conta</a>
-					</div>
-				</form:form>
-				<p class="text-center text-muted small">© 2019 Rifando. Todos os
-					diretos reservados. Rifando.</p>
+			<div class="jumbotron text-xs-center" style="margin-top: 20px;">
+				<h1 class="display-3">Obrigado!!</h1>
+				<p class="lead">
+					<strong>Por favor, verifique seu e-mail</strong> para maiores
+					informações de como utilizar o site.
+				</p>
+				<hr>
+				<p>
+					Está com problemas? <a href="">Fale conosco</a>
+				</p>
+				<p class="lead">
+					<a class="btn btn-primary btn-sm"
+						href="./" role="button">Continuar no site.</a>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -265,6 +172,5 @@
 		</div>
 	</div>
 	<!-- End footer bottom area -->
-	<script type="text/javascript" charset="UTF-8" src="./resources/js/login.js"></script>
 </body>
 </html>

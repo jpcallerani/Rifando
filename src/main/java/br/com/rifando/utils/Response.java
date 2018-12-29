@@ -1,4 +1,4 @@
-package br.com.rifando.controller;
+package br.com.rifando.utils;
 
 public class Response {
 	private String status;

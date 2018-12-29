@@ -2,6 +2,8 @@ package br.com.rifando.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,39 +13,40 @@ public class Usuario {
 
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "cpf", nullable = false)
+	@Column(name = "cpf", length = 11, nullable = false)
 	private String cpf;
 
-	@Column(name = "nome", nullable = false)
+	@Column(name = "nome", length = 80, nullable = false)
 	private String nome;
 
-	@Column(name = "telefone", nullable = false)
+	@Column(name = "telefone", length = 30, nullable = false)
 	private String telefone;
 
-	@Column(name = "rua", nullable = false)
+	@Column(name = "rua", length = 100, nullable = false)
 	private String rua;
 
 	@Column(name = "numero", nullable = false)
-	private String numero;
+	private Integer numero;
 
-	@Column(name = "bairro", nullable = false)
+	@Column(name = "bairro", length = 50, nullable = false)
 	private String bairro;
 
-	@Column(name = "cidade", nullable = false)
+	@Column(name = "cidade", length = 50, nullable = false)
 	private String cidade;
 
-	@Column(name = "estado", nullable = false)
+	@Column(name = "estado", length = 50, nullable = false)
 	private String estado;
 
-	@Column(name = "cep", nullable = false)
+	@Column(name = "cep", length = 20, nullable = false)
 	private String cep;
 
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", length = 45, nullable = false)
 	private String email;
 
-	@Column(name = "senha", nullable = false)
+	@Column(name = "senha", length = 45, nullable = false)
 	private String senha;
 
 	/**
@@ -52,7 +55,7 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String cpf, String nome, String telefone, String rua, String numero, String bairro,
+	public Usuario(Integer id, String cpf, String nome, String telefone, String rua, Integer numero, String bairro,
 			String cidade, String estado, String cep, String email, String senha) {
 		super();
 		this.id = id;
@@ -142,14 +145,14 @@ public class Usuario {
 	/**
 	 * @return the numero
 	 */
-	public String getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
 	/**
 	 * @param numero the numero to set
 	 */
-	public void setNumero(String numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

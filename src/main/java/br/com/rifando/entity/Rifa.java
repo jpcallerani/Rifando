@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -18,6 +20,7 @@ public class Rifa {
 
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "quantidade_numero", nullable = false)
@@ -30,7 +33,7 @@ public class Rifa {
 	@JoinColumn(name = "id_produto", nullable = false)
 	private Produto idProduto;
 
-	@Column(name = "finalizada", nullable = false)
+	@Column(name = "finalizada", length=1, nullable = false)
 	private String finalizada;
 
 	@Transient

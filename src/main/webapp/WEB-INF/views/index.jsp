@@ -1,6 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"        prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"   prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 
 
@@ -21,9 +21,6 @@
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,100'
 	rel='stylesheet' type='text/css'>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-
 <!-- Font Awesome -->
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css">
 
@@ -35,17 +32,27 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.css" />
 <link rel="stylesheet" href="./resources/css/progress.css">
+<link rel="stylesheet" href="./resources/css/cards.css">
+<link rel="stylesheet" href="./resources/css/ribbon.css">
+<link rel="stylesheet" href="./resources/css/index.css">
+
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<!-- Adicionando JQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,118 +60,198 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
 	<div class="header-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8">
-					<div class="user-menu">
-						<ul>
-							<li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-							<li><a href="${pageContext.request.contextPath}/login"><i
-									class="fa fa-user"></i> Login</a></li>
-						</ul>
+		<div class="d-inline p-2" style="margin-left: 20%;">
+			<a href="./"><img src="resources/img/rifando.png"></a>
+		</div>
+		<c:if test="${usuarioLogado != null}">
+			<div class="d-inline p-2" style="margin-left: 20%;">
+				<button id="popProfile" type="button" data-toggle="popover"
+					data-container="body" 
+					data-placement="right" 
+					data-html="true"
+					data-trigger="focus"
+					class="teste btn btn-info btn-circle btn-lg ">
+					<i class="fa fa-user"></i>
+				</button>
+			</div>
+			<div id="popover-content-popProfile" class="modal-dialog"
+				role="document" style="display: none;">
+				<!--Content-->
+				<div class="modal-content">
+					<!--Header-->
+					<div class="modal-header">
+						<p class="heading">
+							Informações do<strong> usuário.</strong>
+						</p>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End header area -->
 
-	<div class="site-branding-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="logo">
-						<h1>
-							<a href="./"><img src="resources/img/brand7.png"></a>
-						</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End site branding area -->
+					<!--Body-->
+					<div class="modal-body">
 
-	<div class="mainmenu-area">
-		<div class="container">
-			<div class="row">
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navbarCollapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="#">Home<span
-								class="sr-only">(current)</span></a></li>
-					</ul>
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="#">Contato</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End mainmenu area -->
-	<div class="slider-area shadow p-3 mb-5 bg-white rounded" >
-		<!-- Slider -->
-		<div class="block-slider block-slider4" >
-			<ul id="bxslider-home4" >
-				<c:forEach var="rifa" items="${rifas}">
-					<li><img 
-						src="resources/img/img01.jpg" alt="Slide"
-						style="height: 362px; width: 800px; margin-left: 50px;">
-						<div class="caption-group">
-							<h2 class="caption title">
-								${rifa.idProduto.nome} <span class="primary">${rifa.idProduto.desc1}</span>
-							</h2>
-							<h4 class="caption subtitle">${rifa.idProduto.desc2}</h4>
-							<br> <a class="btn btn-primary btn-lg"
-								href="${pageContext.request.contextPath}/rifa" role="button"><i
-								class="fa  fa-credit-card" style="margin-right: 10px;"> </i>Comprar
-								Rifa</a>
-						</div> <c:set var="reservadas" value="0" scope="page" /> <c:set
-							var="pagas" value="0" scope="page" /> <c:forEach
-							var="rifaVendas" items="${rifa.rifaVenda}">
-							<c:if test="${rifaVendas.status eq 'R'}">
-								<c:set var="reservadas" value="${reservadas+1}" scope="page" />
-							</c:if>
-							<c:if test="${rifaVendas.status eq 'P'}">
-								<c:set var="pagas" value="${pagas + 1}" scope="page" />
-							</c:if>
-						</c:forEach>
-						<div class="promo-area">
-							<div class="zigzag-bottom"></div>
-							<div class="container">
-								<div class="row">
-									<div class="col-md-3 col-sm-6">
-										<div class="single-promo promo1">
-											<i class="fa fa-smile-o"></i> <i>${rifa.quantidadeNumero - fn:length(rifa.rifaVenda)}</i>
-											<p>Disponíveis</p>
-										</div>
+						<div class="row">
+							<div class="col-3">
+								<p></p>
+								<p class="text-center">
+									<i class="fa fa-user-circle fa-5x" style="color: #3DB5FF"></i>
+								</p>
+							</div>
+
+							<div class="col-9">
+								<p>
+									<strong> <input type="text" readonly
+										style="width: 400px; font-size: 20px; color: #3DB5FF"
+										class="form-control-plaintext text-modal "
+										value="${usuarioLogado.nome}"></strong>
+								</p>
+								<div class="row top-buffer ">
+									<div class="col-7">
+										<strong><label class="fa fa-envelope icone-modal"
+											for="ex1"></label></strong> <input type="text" readonly
+											style="width: 150px;"
+											class="form-control-plaintext text-modal input-size "
+											value="${usuarioLogado.email}">
 									</div>
-									<div class="col-md-3 col-sm-6">
-										<div class="single-promo promo3">
-											<i class="fa fa-lock"></i> <i>${reservadas}</i>
-											<p>Reservados</p>
-										</div>
+									<div class="col-5">
+										<strong><label class="fa fa-phone icone-modal"
+											for="ex1"></label></strong> <input id="inputTelefone" type="text"
+											readonly style="width: 100px;"
+											class="form-control-plaintext text-modal input-size "
+											value="${usuarioLogado.telefone}">
 									</div>
-									<div class="col-md-3 col-sm-6">
-										<div class="single-promo promo4">
-											<i class="fa fa-check-square-o"></i><i>${pagas}</i>
-											<p>Pagos</p>
-										</div>
+								</div>
+								<div class="row top-buffer ">
+									<div class="col">
+										<strong><label class="fa fa-bus icone-modal"
+											for="ex1"></label></strong> <input type="text" readonly
+											style="width: 300px;"
+											class="form-control-plaintext text-modal input-size "
+											value="${usuarioLogado.rua}, ${usuarioLogado.numero}">
+									</div>
+								</div>
+								<div class="row top-buffer ">
+									<div class="col-5">
+										<strong><label class="fa fa-archive icone-modal"
+											for="ex1"></label></strong> <input type="text" readonly
+											style="width: 80px;" id="inputCEP"
+											class="form-control-plaintext text-modal input-size "
+											value="${usuarioLogado.cep}">
+									</div>
+									<div class="col-7">
+										<strong><label class="fa fa-home icone-modal"></label></strong>
+										<input type="text" readonly style="width: 160px;"
+											class="form-control-plaintext text-modal input-size "
+											value="${usuarioLogado.bairro}">
+									</div>
+								</div>
+								<div class="row top-buffer ">
+									<div class="col-5">
+										<strong><label
+											class="fa fa-flag-checkered icone-modal"> </label></strong> <input
+											type="text" readonly style="width: 80px;"
+											class="form-control-plaintext text-modal input-size "
+											value="${usuarioLogado.cidade}">
+									</div>
+									<div class="col-7">
+										<strong><label class="fa fa-building icone-modal"></label></strong>
+										<input type="text" readonly style="width: 100px;"
+											class="form-control-plaintext text-modal input-size "
+											value="${usuarioLogado.estado}">
 									</div>
 								</div>
 							</div>
-						</div> <!-- End promo area --></li>
+						</div>
+					</div>
+
+					<!--Footer-->
+					<div class="modal-footer flex-center">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-4">
+									<button type="button"
+										class="fa fa-sign-out btn btn-primary btn-lg ">
+										<label class="text-modal" style="font-size: 12px;">
+											Desconectar</label>
+									</button>
+								</div>
+								<div class="col-4">
+									<button type="button" style="background-color: none;"
+										class="fa fa-cog btn btn-outline-primary btn-lg ">
+										<label class="text-modal" style="font-size: 12px;">
+											Editar Profile</label>
+									</button>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+				<!--/.Content-->
+			</div>
+		</c:if>
+	</div>
+	<div id='cssmenu'>
+		<ul style="margin-left: 380px;">
+			<li class="active"><a href='./'><span>Home</span></a></li>
+			<li><a href='${pageContext.request.contextPath}/contato'><span>Contato</span></a></li>
+			<li><a href='${pageContext.request.contextPath}/cadastro'><span>Cadastro</span></a></li>
+			<li><a href='${pageContext.request.contextPath}/login'><span>Login</span></a></li>
+
+		</ul>
+	</div>
+	<!-- End mainmenu area -->
+
+	<!-- End slider area -->
+	<div class="slider-area">
+		<!-- Slider -->
+		<div class="container">
+			<div class="row">
+				<!--Profile Card 5-->
+				<c:forEach var="rifa" items="${rifas}">
+					<c:set var="reservadas" value="0" scope="page" />
+					<c:set var="pagas" value="0" scope="page" />
+					<c:forEach var="rifaVendas" items="${rifa.rifaVenda}">
+						<c:if test="${rifaVendas.status eq 'R'}">
+							<c:set var="reservadas" value="${reservadas+1}" scope="page" />
+						</c:if>
+						<c:if test="${rifaVendas.status eq 'P'}">
+							<c:set var="pagas" value="${pagas + 1}" scope="page" />
+						</c:if>
+					</c:forEach>
+					<div class="col-md-3 mt-3">
+						<div class="card profile-card-5">
+							<div class="card-img-block">
+								<div class="ribbon">
+									<span>Rifa</span>
+								</div>
+								<img class="card-img-top"
+									src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c"
+									alt="Card image cap">
+							</div>
+							<div class="card-body pt-0">
+								<h5 class="card-title">${rifa.idProduto.nome}</h5>
+								<span class="badge badge-pill badge-success shadow-sm" 
+									data-toggle="tooltip" title="Disponíveis">${rifa.quantidadeNumero - fn:length(rifa.rifaVenda)}</span>
+								<span class="badge badge-pill badge-warning shadow-sm"
+									data-toggle="tooltip" title="Reservadas">${reservadas}</span> <span
+									class="badge badge-pill badge-danger shadow-sm" data-toggle="tooltip"
+									title="Pagas">${pagas}</span>
+								<p class="card-text">
+									<b>${rifa.idProduto.desc1}</b>
+								</p>
+								<p class="card-text">${rifa.idProduto.desc2}</p>
+							</div>
+							<a href="#" class="btn btn-primary shadow-sm btn-raised">Comprar um número</a>
+						</div>
+					</div>
 				</c:forEach>
-			</ul>
+			</div>
 		</div>
 		<!-- ./Slider -->
 	</div>
-	<!-- End slider area -->
-
 	<!-- End promo area -->
 
 	<div class="maincontent-area">
@@ -174,281 +261,13 @@
 				<div class="col-md-12">
 					<div class="latest-product">
 						<h2 class="section-title">Rifas Finalizadas</h2>
-						<div class="product-carousel">
-							<div class="single-product">
-								<div class="product-f-image">
-									<img src="resources/img/product-1.jpg" alt="">
-									<!-- <div class="product-hover">
-                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                         
-                                    </div>-->
-								</div>
 
-								<h2>
-									<a href="single-product.html">Samsung Galaxy s5- 2015</a>
-								</h2>
-
-								<!-- <div class="product-carousel-price">
-                                    <ins>$700.00</ins> <del>$100.00</del>
-                                </div> -->
-							</div>
-							<div class="single-product">
-								<div class="product-f-image">
-									<img src="resources/img/product-2.jpg" alt="">
-									<!--<div class="product-hover">
-                                         <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                    </div>-->
-								</div>
-
-								<h2>Nokia Lumia 1320</h2>
-								<!-- <div class="product-carousel-price">
-                                    <ins>$899.00</ins> <del>$999.00</del>
-                                </div> -->
-							</div>
-							<div class="single-product">
-								<div class="product-f-image">
-									<img src="resources/img/product-3.jpg" alt="">
-									<!-- <div class="product-hover">
-										<a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a> 
-									</div>-->
-								</div>
-
-								<h2>LG Leon 2015</h2>
-
-								<!--<div class="product-carousel-price">
-                                    <ins>$400.00</ins> <del>$425.00</del>
-                                </div>     -->
-							</div>
-							<div class="single-product">
-								<div class="product-f-image">
-									<img src="resources/img/product-4.jpg" alt="">
-									<!-- <div class="product-hover">
-										<a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a> 
-									</div>-->
-								</div>
-
-								<h2>
-									<a href="single-product.html">Sony microsoft</a>
-								</h2>
-
-								<!-- <div class="product-carousel-price">
-									<ins>$200.00</ins>
-									<del>$225.00</del>
-								</div> -->
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End main content area -->
-
-	<!-- <div class="brands-area">
-		<div class="zigzag-bottom"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="brand-wrapper">
-						<div class="brand-list">
-							<img src="resources/img/brand1.png" alt=""> <img
-								src="resources/img/brand2.png" alt=""> <img
-								src="resources/img/brand3.png" alt=""> <img
-								src="resources/img/brand4.png" alt=""> <img
-								src="resources/img/brand5.png" alt=""> <img
-								src="resources/img/brand6.png" alt=""> <img
-								src="resources/img/brand1.png" alt=""> <img
-								src="resources/img/brand2.png" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- End brands area -->
-
-	<div class="product-widget-area">
-		<!-- <div class="zigzag-bottom"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="single-product-widget">
-						<h2 class="product-wid-title">Top Sellers</h2>
-						<a href="" class="wid-view-more">View All</a>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-1.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Sony Smart TV - 2015</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-2.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Apple new mac book 2015</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-3.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Apple new i phone 6</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="single-product-widget">
-						<h2 class="product-wid-title">Recently Viewed</h2>
-						<a href="#" class="wid-view-more">View All</a>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-4.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Sony playstation microsoft</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-1.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Sony Smart Air Condtion</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-2.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Samsung gallaxy note 4</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="single-product-widget">
-						<h2 class="product-wid-title">Top New</h2>
-						<a href="#" class="wid-view-more">View All</a>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-3.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Apple new i phone 6</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-4.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Samsung gallaxy note 4</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-						<div class="single-wid-product">
-							<a href="single-product.html"><img
-								src="resources/img/product-thumb-1.jpg" alt=""
-								class="product-thumb"></a>
-							<h2>
-								<a href="single-product.html">Sony playstation microsoft</a>
-							</h2>
-							<div class="product-wid-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-							<div class="product-wid-price">
-								<ins>$400.00</ins>
-								<del>$425.00</del>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
-	</div>
 	<!-- End product widget area -->
 
 	<div class="footer-top-area">
@@ -536,26 +355,7 @@
 		</div>
 	</div>
 	<!-- End footer bottom area -->
-
-	<!-- Latest jQuery form server -->
-	<script src="https://code.jquery.com/jquery.min.js"></script>
-
-	<!-- Bootstrap JS form CDN -->
-	<script
-		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-	<!-- jQuery sticky menu -->
-	<script src="./resources/js/owl.carousel.min.js"></script>
-	<script src="./resources/js/jquery.sticky.js"></script>
-
-	<!-- jQuery easing -->
-	<script src="./resources/js/jquery.easing.1.3.min.js"></script>
-
 	<!-- Main Script -->
 	<script src="./resources/js/main.js"></script>
-
-	<!-- Slider -->
-	<script type="text/javascript" src="./resources/js/bxslider.min.js"></script>
-	<script type="text/javascript" src="./resources/js/script.slider.js"></script>
 </body>
 </html>

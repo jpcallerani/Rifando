@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rifando.</title>
@@ -35,6 +35,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.css" />
 <link rel="stylesheet" href="./resources/css/progress.css">
+<link rel="stylesheet" href="./resources/css/menu.css">
+
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
 
@@ -51,6 +53,12 @@
 
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">	
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -127,121 +135,23 @@
 	z-index: 1;
 }
 </style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#inputCPF').mask('000.000.000-00');
-		$('#inputTelefone').mask('+(00)0 0000 0000');
-	});
-</script>
-<!-- Adicionando Javascript -->
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-
-				function limpa_formulário_cep() {
-					// Limpa valores do formulário de cep.
-					$("#inputCEP").val("");
-					$("#inputRua").val("");
-					$("#inputBairro").val("");
-					$("#inputCidade").val("");
-					$("#inputEstado").val("");
-				}
-
-				//Quando o campo cep perde o foco.
-				$("#inputCEP").blur(
-						function() {
-
-							//Nova variável "cep" somente com dígitos.
-							var cep = $(this).val().replace(/\D/g, '');
-
-							//Verifica se campo cep possui valor informado.
-							if (cep != "") {
-
-								//Expressão regular para validar o CEP.
-								var validacep = /^[0-9]{8}$/;
-
-								//Valida o formato do CEP.
-								if (validacep.test(cep)) {
-
-									//Preenche os campos com "..." enquanto consulta webservice.
-									$("#inputRua").val("...");
-									$("#inputBairro").val("...");
-									$("#inputCidade").val("...");
-									$("#inputEstado").val("...");
-
-									//Consulta o webservice viacep.com.br/
-									$.getJSON("https://viacep.com.br/ws/" + cep
-											+ "/json/?callback=?",
-											function(dados) {
-
-												if (!("erro" in dados)) {
-													//Atualiza os campos com os valores da consulta.
-													$("#inputRua").val(
-															dados.logradouro);
-													$("#inputBairro").val(
-															dados.bairro);
-													$("#inputCidade").val(
-															dados.localidade);
-													$("#inputEstado").val(
-															dados.uf);
-												} //end if.
-												else {
-													//CEP pesquisado não foi encontrado.
-													limpa_formulário_cep();
-													$('#exampleModal').modal(
-															'show');
-												}
-											});
-								} //end if.
-								else {
-									//cep é inválido.
-									limpa_formulário_cep();
-									$('#exampleModal').modal('show');
-								}
-							} //end if.
-							else {
-								//cep sem valor, limpa formulário.
-								limpa_formulário_cep();
-							}
-						});
-			});
-</script>
-<script>
-	$(document).ready(function() {
-		$('[data-toggle="tooltip"]').tooltip();
-	});
-</script>
 </head>
 <body>
 	<div class="header-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8">
-					<div class="user-menu">
-						<ul>
-							<li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-							<li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+		<a href="./"><img src="resources/img/rifando.png"
+			style="margin-left: 20%;"></a>
 	</div>
-	<!-- End header area -->
 
-	<div class="site-branding-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="logo">
-						<h1>
-							<a href="./"><img src="resources/img/brand7.png"></a>
-						</h1>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div id='cssmenu'>
+		<ul style="margin-left: 380px;">
+			<li><a href='./'><span>Home</span></a></li>
+			<li><a href='${pageContext.request.contextPath}/contato'><span>Contato</span></a></li>
+			<li class="active"><a href='${pageContext.request.contextPath}/cadastro'><span>Cadastro</span></a></li>
+			<li class='last'><a
+				href='${pageContext.request.contextPath}/login'><span>Login</span></a></li>
+		</ul>
 	</div>
+	<!-- End mainmenu area -->
 	<!-- End site branding area -->
 	<div class="mainmenu-area">
 		<div class="container">
@@ -271,12 +181,13 @@
 			</div>
 			<div class="login-form">
 				<!-- Método para login do usuário -->
-				<form:form action="${pageContext.request.contextPath}/efetuaLogin"
+				<form:form id="cadastraNovoUsuario" action="${pageContext.request.contextPath}/efetuaCadastro"
 					method="POST" modelAttribute="usuario">
-					<h2 class="text-center">Preencha suas informações</h2>
+					<h2 class="text-center label-cadastro" style="font-size: 18px; font-style: italic;">
+					<strong>Preencha suas informações</strong></h2>
 					<div class="form-group">
 						<!-- Campo NOME para o cadastro -->
-						<form:label for="inputNome" path="nome">Nome</form:label>
+						<form:label for="inputNome" class="label-cadastro" path="nome">Nome</form:label>
 						<form:input type="text" path="nome" class="form-control"
 							id="inputNome" placeholder="Nome Completo" maxlength="80"
 							required="required" data-toggle="tooltip" data-placement="top"
@@ -285,14 +196,14 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<!-- Campo CPF para o cadastro -->
-							<form:label for="inputCPF" path="cpf">CPF</form:label>
+							<form:label for="inputCPF" path="cpf" class="label-cadastro">CPF</form:label>
 							<form:input type="text" path="cpf" class="form-control"
 								id="inputCPF" placeholder="CPF" required="required"
 								data-toggle="tooltip" data-placement="top"
 								title="Digite o seu CPF!" />
 						</div>
 						<div class="form-group col-md-6">
-							<form:label for="inputTelefone" path="telefone">Whatsapp</form:label>
+							<form:label for="inputTelefone" path="telefone" class="label-cadastro">Whatsapp</form:label>
 							<form:input type="text" class="form-control" path="telefone"
 								id="inputTelefone" placeholder="Telefone" required="required"
 								data-toggle="tooltip" data-placement="top"
@@ -301,17 +212,17 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<form:label for="inputEmail4" path="email">Email</form:label>
+							<form:label for="inputEmail4" path="email" class="label-cadastro">Email</form:label>
 							<div class="input-group">
 								<span class="input-group-addon" style="width: 40px;"><i
 									class="glyphicon glyphicon-user"></i></span>
 								<form:input type="email" path="email" class="form-control"
-									id="inputEmail4" placeholder="Email" data-toggle="tooltip"
+									id="inputEmail4" placeholder="Email" data-toggle="tooltip" maxlength="45"
 									data-placement="top" title="Seu e-mail servirá como login!" />
 							</div>
 						</div>
 						<div class="form-group col-md-6">
-							<form:label for="inputPassword4" path="senha">Password</form:label>
+							<form:label for="inputPassword4" path="senha" class="label-cadastro">Password</form:label>
 							<div class="input-group">
 								<span class="input-group-addon" style="width: 40px;"><i
 									class="glyphicon glyphicon-lock"></i></span>
@@ -325,20 +236,20 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-2">
-							<form:label for="inputCEP" path="cep">CEP</form:label>
+							<form:label for="inputCEP" path="cep" class="label-cadastro">CEP</form:label>
 							<form:input type="text" path="cep" class="form-control"
 								placeholder="CEP" id="inputCEP" maxlength="8"
 								required="required" data-toggle="tooltip" data-placement="top"
 								title="Digite o CEP da sua residência!" />
 						</div>
 						<div class="form-group col-md-8">
-							<form:label for="inputRua" path="rua">Rua</form:label>
+							<form:label for="inputRua" path="rua" class="label-cadastro">Rua</form:label>
 							<form:input type="text" class="form-control" path="rua"
 								id="inputRua" placeholder="Av. Paulista" maxlength="100"
 								required="required" />
 						</div>
 						<div class="form-group col-md-2">
-							<form:label for="inputNumero" path="numero">Número</form:label>
+							<form:label for="inputNumero" path="numero" class="label-cadastro">Número</form:label>
 							<form:input type="text" path="numero" class="form-control"
 								placeholder="Número" id="inputNumero" required="required"
 								data-toggle="tooltip" data-placement="top"
@@ -347,20 +258,20 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<form:label for="inputBairro" path="bairro">Bairro</form:label>
+							<form:label for="inputBairro" path="bairro" class="label-cadastro">Bairro</form:label>
 							<form:input type="text" class="form-control" id="inputBairro"
 								placeholder="Centro" path="bairro" maxlength="50"
 								required="required" />
 						</div>
 						<div class="form-group col-md-3">
-							<form:label for="inputCidade" path="cidade">City</form:label>
+							<form:label for="inputCidade" path="cidade" class="label-cadastro">Cidade</form:label>
 							<form:input type="text" class="form-control" id="inputCidade"
 								placeholder="Campinas" path="cidade" maxlength="50"
 								required="required" />
 						</div>
 						<div class="form-group col-md-3">
-							<form:label for="inputEstado" path="estado">Estado</form:label>
-							<form:input type="text" path="estado" class="form-control"
+							<form:label for="inputEstado" path="estado" class="label-cadastro">Estado</form:label>
+							<form:input type="text" path="estado" class="form-control" maxlength="45"
 								placeholder="São Paulo" id="inputEstado" />
 						</div>
 					</div>
@@ -368,12 +279,12 @@
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value=""
 								id="invalidCheck" required style="margin-left: -20px;" /> <label
-								class="form-check-label" for="invalidCheck"> Você deve
-								aceitar os termos de uso.</label>
+								class="form-check-label label-cadastro" for="invalidCheck" ><i> Você deve
+								aceitar os termos de uso.</i></label>
 						</div>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary login-btn btn-block">Cadastrar</button>
+						<button type="submit" class="btn btn-info btn-block btn-raised btn-shadow">Cadastrar</button>
 					</div>
 				</form:form>
 				<p class="text-center text-muted small">© 2019 Rifando. Todos os
@@ -453,5 +364,6 @@
 		</div>
 	</div>
 	<!-- End footer bottom area -->
+	<script type="text/javascript" charset="UTF-8" src="./resources/js/cadastroUsuario.js"></script>
 </body>
 </html>
