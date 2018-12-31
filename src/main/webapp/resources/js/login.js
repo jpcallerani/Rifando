@@ -1,90 +1,79 @@
-jQuery(document)
+$(document)
 		.ready(
-				function($) {
+				function() {
 
-					$(document)
-							.ready(
-									function() {
+					// SUBMIT FORM
+					$("#customerForm").submit(function(event) {
+						// Prevent the form from
+						// submitting via the
+						// browser.
 
-										// SUBMIT FORM
-										$("#customerForm").submit(
-												function(event) {
-													// Prevent the form from
-													// submitting via the
-													// browser.
+						event.preventDefault();
+						ajaxPost();
+					});
 
-													event.preventDefault();
-													ajaxPost();
-												});
+					function ajaxPost() {
+						// PREPARE FORM DATA
+						var formData = {
+							email : $("#email").val(),
+							senha : $("#senha").val()
+						}
 
-										function ajaxPost() {
-											// PREPARE FORM DATA
-											var formData = {
-												email : $("#email").val(),
-												senha : $("#senha").val()
+						// DO POST
+						$
+								.ajax({
+									type : "POST",
+									contentType : "application/json",
+									url : "efetuaLogin",
+									data : JSON.stringify(formData),
+									dataType : 'json',
+									success : function(result) {
+										if (result.status == "Done") {
+											window.location.replace("cadastro");
+										} else {
+											function toasterOptions() {
+												toastr.options = {
+													"closeButton" : false,
+													"debug" : false,
+													"newestOnTop" : false,
+													"progressBar" : true,
+													"positionClass" : "toast-top-center",
+													"preventDuplicates" : false,
+													"showDuration" : "300",
+													"hideDuration" : "1000",
+													"timeOut" : "5000",
+													"extendedTimeOut" : "1000",
+													"showEasing" : "swing",
+													"hideEasing" : "linear",
+													"showMethod" : "fadeIn",
+													"hideMethod" : "fadeOut"
+												};
 											}
+											;
 
-											// DO POST
-											$
-													.ajax({
-														type : "POST",
-														contentType : "application/json",
-														url : "efetuaLogin",
-														data : JSON
-																.stringify(formData),
-														dataType : 'json',
-														success : function(
-																result) {
-															if (result.status == "Done") {
-																window.location
-																		.replace("cadastro");
-															} else {
-																function toasterOptions() {
-																	toastr.options = {
-																		"closeButton" : false,
-																		"debug" : false,
-																		"newestOnTop" : false,
-																		"progressBar" : true,
-																		"positionClass" : "toast-top-center",
-																		"preventDuplicates" : false,
-																		"showDuration" : "300",
-																		"hideDuration" : "1000",
-																		"timeOut" : "5000",
-																		"extendedTimeOut" : "1000",
-																		"showEasing" : "swing",
-																		"hideEasing" : "linear",
-																		"showMethod" : "fadeIn",
-																		"hideMethod" : "fadeOut"
-																	};
-																}
-																;
-
-																toasterOptions();
-																toastr
-																		.error(
-																				"Sua credenciais estão inválidas ou não existem.",
-																				"Atenção!");
-															}
-															console.log(result);
-														},
-														error : function(e) {
-															alert("erro");
-															console.log(
-																	"ERROR: ",
-																	e);
-														}
-													});
-
-											// Reset FormData after Posting
-											resetData();
-
+											toasterOptions();
+											toastr
+													.error(
+															"Sua credenciais estão inválidas ou não existem.",
+															"Atenção!");
 										}
+										console.log(result);
+									},
+									error : function(e) {
+										alert("erro");
+										console.log("ERROR: ", e);
+									}
+								});
 
-										function resetData() {
-											$("#email").val("");
-											$("#senha").val("");
-										}
-									});
+						// Reset FormData after Posting
+						resetData();
+
+					}
+
+					function resetData() {
+						$("#email").val("");
+						$("#senha").val("");
+					}
 
 					$(document).ajaxStart(function() {
 						$(document.body).css({

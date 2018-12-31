@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rifando.</title>
@@ -36,7 +36,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.css" />
 <link rel="stylesheet" href="./resources/css/progress.css">
 <link rel="stylesheet" href="./resources/css/menu.css">
-<link rel="stylesheet" href="./resources/css/hover.css">
 
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
@@ -140,64 +139,32 @@
 
 	<div id='cssmenu'>
 		<ul style="margin-left: 380px;">
-			<li ><a href='./'><span>Home</span></a></li>
+			<li><a href='./'><span>Home</span></a></li>
 			<li><a href='${pageContext.request.contextPath}/contato'><span>Contato</span></a></li>
-			<c:if test="${usuarioLogado == null}">
-				<li><a href='${pageContext.request.contextPath}/cadastro'><span>Cadastro</span></a></li>
-			</c:if>
-			<li class="active"><a
+			<li><a href='${pageContext.request.contextPath}/cadastro'><span>Cadastro</span></a></li>
+			<li><a
 				href='${pageContext.request.contextPath}/login'><span>Login</span></a></li>
-			<c:if test="${usuarioLogado != null}">
-				<c:if test="${usuarioLogado.administrador == 'S'}">
-					<li><a href='${pageContext.request.contextPath}/Administração'><span>Administração</span></a></li>
-				</c:if>
-			</c:if>
+							<li class='last active'><a
+				href='${pageContext.request.contextPath}/login'><span>Logout</span></a></li>
 		</ul>
 	</div>
 	<!-- End site branding area -->
 
 	<div class="mainmenu-area">
 		<div class="container">
-			<div id="" class="login-form">
-				<!-- Método para login do usuário -->
-				<form:form id="customerForm" method="POST" modelAttribute="usuario">
-					<h2 class="text-center label-cadastro" style="font-size: 18px; font-style: italic;"><strong>Faça seu Login</h2></strong>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon label-cadastro" style="width: 40px;"><i
-								class="fa fa-user"></i></span>
-							<form:input id="email" type="email" class="form-control"
-								path="email" name="email" placeholder="Digite seu e-mail"
-								required="required" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon label-cadastro" style="width: 40px;"><i
-								class="fa fa-lock"></i></span>
-							<form:input id="senha" type="password" class="form-control"
-								path="senha" name="password" placeholder="Digite sua senha"
-								required="required" />
-						</div>
-					</div>
-					<div style="color: red">${error}</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary login-btn btn-block hvr-shadow">Entrar</button>
-					</div>
-					<div class="clearfix">
-						<a href="#" class="pull-right">Esqueceu sua senha?</a>
-					</div>
-					<div class="or-seperator">
-						<i>ou</i>
-					</div>
-					<div class="text-center social-btn">
-						<a href="${pageContext.request.contextPath}/cadastro"
-							class="btn btn-danger hvr-shadow">&nbsp; Clique aqui para criar uma nova
-							conta</a>
-					</div>
-				</form:form>
-				<p class="text-center text-muted small">© 2019 Rifando. Todos os
-					diretos reservados. Rifando.</p>
+			<div class="jumbotron text-xs-center" style="margin-top: 20px;">
+				<h1 class="display-3">Você desconectou.</h1>
+				<p class="lead">
+					<strong>Obrigado </strong> e volte sempre.
+				</p>
+				<hr>
+				<p>
+					Está com problemas? <a href="${pageContext.request.contextPath}/contato">Fale conosco</a>
+				</p>
+				<p class="lead">
+					<a class="btn btn-primary btn-sm" href="." role="button">Continuar
+						no site.</a>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -273,6 +240,7 @@
 		</div>
 	</div>
 	<!-- End footer bottom area -->
-	<script type="text/javascript" charset="UTF-8" src="./resources/js/login.js"></script>
+	<script type="text/javascript" charset="UTF-8"
+		src="./resources/js/login.js"></script>
 </body>
 </html>

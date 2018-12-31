@@ -48,6 +48,9 @@ public class Usuario {
 
 	@Column(name = "senha", length = 45, nullable = false)
 	private String senha;
+	
+	@Column(name = "administrador", length = 1, nullable = false)
+	private String administrador = "N";	
 
 	/**
 	 * 
@@ -56,7 +59,7 @@ public class Usuario {
 	}
 
 	public Usuario(Integer id, String cpf, String nome, String telefone, String rua, Integer numero, String bairro,
-			String cidade, String estado, String cep, String email, String senha) {
+			String cidade, String estado, String cep, String email, String senha, String administrador) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -70,6 +73,7 @@ public class Usuario {
 		this.cep = cep;
 		this.email = email;
 		this.senha = senha;
+		this.administrador = administrador;
 	}
 
 	/**
@@ -239,16 +243,28 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+		/**
+	 * @return the administrador
+	 */
+	public String getAdministrador() {
+		return administrador;
+	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @param administrador the administrador to set
+	 */
+	public void setAdministrador(String administrador) {
+		this.administrador = administrador;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", telefone=" + telefone + ", rua=" + rua
 				+ ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep="
-				+ cep + ", email=" + email + ", senha=" + senha + "]";
+				+ cep + ", email=" + email + ", senha=" + senha + ", administrador=" + administrador + "]";
 	}
 }

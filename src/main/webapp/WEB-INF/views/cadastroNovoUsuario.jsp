@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rifando.</title>
@@ -21,9 +21,6 @@
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,100'
 	rel='stylesheet' type='text/css'>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css">
-
 <!-- Font Awesome -->
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css">
 
@@ -36,6 +33,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.css" />
 <link rel="stylesheet" href="./resources/css/progress.css">
 <link rel="stylesheet" href="./resources/css/menu.css">
+<link rel="stylesheet" href="./resources/css/hover.css">
 
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
@@ -58,7 +56,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">	
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -146,7 +144,8 @@
 		<ul style="margin-left: 380px;">
 			<li><a href='./'><span>Home</span></a></li>
 			<li><a href='${pageContext.request.contextPath}/contato'><span>Contato</span></a></li>
-			<li class="active"><a href='${pageContext.request.contextPath}/cadastro'><span>Cadastro</span></a></li>
+			<li class="active"><a
+				href='${pageContext.request.contextPath}/cadastro'><span>Cadastro</span></a></li>
 			<li class='last'><a
 				href='${pageContext.request.contextPath}/login'><span>Login</span></a></li>
 		</ul>
@@ -181,10 +180,13 @@
 			</div>
 			<div class="login-form">
 				<!-- Método para login do usuário -->
-				<form:form id="cadastraNovoUsuario" action="${pageContext.request.contextPath}/efetuaCadastro"
+				<form:form id="cadastraNovoUsuario"
+					action="${pageContext.request.contextPath}/efetuaCadastro"
 					method="POST" modelAttribute="usuario">
-					<h2 class="text-center label-cadastro" style="font-size: 18px; font-style: italic;">
-					<strong>Preencha suas informações</strong></h2>
+					<h2 class="text-center label-cadastro"
+						style="font-size: 18px; font-style: italic;">
+						<strong>Preencha suas informações</strong>
+					</h2>
 					<div class="form-group">
 						<!-- Campo NOME para o cadastro -->
 						<form:label for="inputNome" class="label-cadastro" path="nome">Nome</form:label>
@@ -203,7 +205,8 @@
 								title="Digite o seu CPF!" />
 						</div>
 						<div class="form-group col-md-6">
-							<form:label for="inputTelefone" path="telefone" class="label-cadastro">Whatsapp</form:label>
+							<form:label for="inputTelefone" path="telefone"
+								class="label-cadastro">Whatsapp</form:label>
 							<form:input type="text" class="form-control" path="telefone"
 								id="inputTelefone" placeholder="Telefone" required="required"
 								data-toggle="tooltip" data-placement="top"
@@ -213,24 +216,18 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<form:label for="inputEmail4" path="email" class="label-cadastro">Email</form:label>
-							<div class="input-group">
-								<span class="input-group-addon" style="width: 40px;"><i
-									class="glyphicon glyphicon-user"></i></span>
-								<form:input type="email" path="email" class="form-control"
-									id="inputEmail4" placeholder="Email" data-toggle="tooltip" maxlength="45"
-									data-placement="top" title="Seu e-mail servirá como login!" />
-							</div>
+							<form:input type="email" path="email" class="form-control"
+								id="inputEmail4" placeholder="Email" data-toggle="tooltip"
+								maxlength="45" data-placement="top"
+								title="Seu e-mail servirá como login!" />
 						</div>
 						<div class="form-group col-md-6">
-							<form:label for="inputPassword4" path="senha" class="label-cadastro">Password</form:label>
-							<div class="input-group">
-								<span class="input-group-addon" style="width: 40px;"><i
-									class="glyphicon glyphicon-lock"></i></span>
-								<form:input type="password" class="form-control" path="senha"
-									id="inputPassword4" placeholder="Password" required="true"
-									maxlength="40" data-toggle="tooltip" data-placement="top"
-									title="Digite uma senha!" />
-							</div>
+							<form:label for="inputPassword4" path="senha"
+								class="label-cadastro">Password</form:label>
+							<form:input type="password" class="form-control" path="senha"
+								id="inputPassword4" placeholder="Password" required="true"
+								maxlength="40" data-toggle="tooltip" data-placement="top"
+								title="Digite uma senha!" /> 
 
 						</div>
 					</div>
@@ -249,42 +246,47 @@
 								required="required" />
 						</div>
 						<div class="form-group col-md-2">
-							<form:label for="inputNumero" path="numero" class="label-cadastro">Número</form:label>
+							<form:label for="inputNumero" path="numero"
+								class="label-cadastro">Número</form:label>
 							<form:input type="text" path="numero" class="form-control"
 								placeholder="Número" id="inputNumero" required="required"
-								data-toggle="tooltip" data-placement="top"
+								data-toggle="tooltip" data-placement="top" maxlength="7"
 								title="Digite o número da sua residência!" />
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<form:label for="inputBairro" path="bairro" class="label-cadastro">Bairro</form:label>
+							<form:label for="inputBairro" path="bairro"
+								class="label-cadastro">Bairro</form:label>
 							<form:input type="text" class="form-control" id="inputBairro"
 								placeholder="Centro" path="bairro" maxlength="50"
 								required="required" />
 						</div>
 						<div class="form-group col-md-3">
-							<form:label for="inputCidade" path="cidade" class="label-cadastro">Cidade</form:label>
+							<form:label for="inputCidade" path="cidade"
+								class="label-cadastro">Cidade</form:label>
 							<form:input type="text" class="form-control" id="inputCidade"
 								placeholder="Campinas" path="cidade" maxlength="50"
 								required="required" />
 						</div>
 						<div class="form-group col-md-3">
-							<form:label for="inputEstado" path="estado" class="label-cadastro">Estado</form:label>
-							<form:input type="text" path="estado" class="form-control" maxlength="45"
-								placeholder="São Paulo" id="inputEstado" />
+							<form:label for="inputEstado" path="estado"
+								class="label-cadastro">Estado</form:label>
+							<form:input type="text" path="estado" class="form-control"
+								maxlength="45" placeholder="São Paulo" id="inputEstado" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value=""
 								id="invalidCheck" required style="margin-left: -20px;" /> <label
-								class="form-check-label label-cadastro" for="invalidCheck" ><i> Você deve
-								aceitar os termos de uso.</i></label>
+								class="form-check-label label-cadastro" for="invalidCheck"><i>
+									Você deve aceitar os termos de uso.</i></label>
 						</div>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-info btn-block btn-raised btn-shadow">Cadastrar</button>
+						<button type="submit"
+							class="btn btn-info btn-block btn-raised btn-shadow">Cadastrar</button>
 					</div>
 				</form:form>
 				<p class="text-center text-muted small">© 2019 Rifando. Todos os
@@ -364,6 +366,7 @@
 		</div>
 	</div>
 	<!-- End footer bottom area -->
-	<script type="text/javascript" charset="UTF-8" src="./resources/js/cadastroUsuario.js"></script>
+	<script type="text/javascript" charset="UTF-8"
+		src="./resources/js/cadastroUsuario.js"></script>
 </body>
 </html>

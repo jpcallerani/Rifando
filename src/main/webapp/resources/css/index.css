@@ -275,8 +275,12 @@
 	float: none;
 }
 
-.popover {
+.popover{
 	max-width: 600px !important;
+}
+
+.popover-body {
+	width: 500px !important;
 }
 
 .btn-circle.btn-lg {
@@ -288,8 +292,6 @@
 	border-radius: 25px;
 }
 
-.btn-circle.btn-lg:hover {
-	background-color: #3DB5FF;
-	border-color: #3DB5FF;
-	box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+.hvr-underline-from-center:before{
+    background: #ffffff !important;
 }

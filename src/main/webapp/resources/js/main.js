@@ -1,4 +1,12 @@
 jQuery(document).ready(function($) {
+  
+	$(document).on('click', '#btnLogout', function() {
+		$('#formLogout').submit();
+	});
+	
+	$(document).on('click', '#btnProfile', function() {
+		$('#formProfile').submit();
+	});
 
 	(function($) {
 		$(function() {
@@ -13,16 +21,14 @@ jQuery(document).ready(function($) {
 				});
 			});
 		});
-		$('.popover-dismiss').popover({
-			trigger : 'focus'
-		});
+
 	})(jQuery);
 
 	(function($) {
 		$(function() {
 			$('[data-toggle="popover"]').popover({
 				container : 'body',
-				animation: true
+				animation : true
 			});
 		});
 	})(jQuery);
