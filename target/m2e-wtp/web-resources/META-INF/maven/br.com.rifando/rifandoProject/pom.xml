@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<springframework.version>5.0.6.RELEASE</springframework.version>
+		<springframework.version>5.2.20.RELEASE</springframework.version>
 		<hibernate.version>5.4.0.Final</hibernate.version>
 
 		<maven.compiler.source>1.8</maven.compiler.source>
